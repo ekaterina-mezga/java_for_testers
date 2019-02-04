@@ -1,7 +1,8 @@
 package ru.stqa.pft.sandbox;
 
 public class MyFirstProgram {
-	public static void main(String[] args){
+
+	public static void myFirstProgram(){
 
 		System.out.println("Hello, World!");
 
@@ -10,8 +11,7 @@ public class MyFirstProgram {
 
 		Rectangle rectangle = new Rectangle(6,4);
 		System.out.println("Rectangle sides are " + rectangle.width + " and " + rectangle.height
-						   + ", rectangle area is " + rectangle.area());
-
+				+ ", rectangle area is " + rectangle.area());
 	}
 
 }
