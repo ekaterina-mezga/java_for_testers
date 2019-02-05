@@ -38,7 +38,7 @@ public class PointTests {
     @Test
     public void distanceEqualsZero(){
 
-        Point pointC = new Point(2, 6);
+        Point pointC = new Point(2,6);
         Point pointD = new Point(2,6);
 
         Assert.assertEquals(pointC.distanceToPoint(pointD), 0.0);
