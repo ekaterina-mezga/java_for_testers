@@ -18,7 +18,7 @@ public class GroupCreationTests {
 
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
-    //System.setProperty("webdriver.chrome.driver", "d:/Work/learning/java_for_testers/tools/chromedriver246.exe");
+    System.setProperty("webdriver.chrome.driver", "d:/Work/learning/tools/chromedriver246.exe ");
     driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
