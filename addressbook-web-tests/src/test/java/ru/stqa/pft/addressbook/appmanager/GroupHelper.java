@@ -1,48 +1,41 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-public class GroupHelper {
+public class GroupHelper extends BaseHelper{
 
     private ChromeDriver driver;
 
     public GroupHelper(ChromeDriver driver){
-
+        super(driver);
         this.driver = driver;
     }
 
-    public void returnToGroupsPage() {
-      driver.findElement(By.linkText("group page")).click();
+    public void returnToGroupsPage(){
+      clickLinkText("group page");
     }
 
-    public void submitGroupCreation() {
-      driver.findElement(By.name("submit")).click();
+    public void submitGroupCreation(){
+      clickButtonByName("submit");
     }
 
-    public void fillGroupForm(GroupData groupData) {
-      driver.findElement(By.name("group_name")).click();
-      driver.findElement(By.name("group_name")).clear();
-      driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
-      driver.findElement(By.name("group_header")).click();
-      driver.findElement(By.name("group_header")).clear();
-      driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-      driver.findElement(By.name("group_footer")).click();
-      driver.findElement(By.name("group_footer")).clear();
-      driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    public void fillGroupForm(GroupData groupData){
+      typeTextInField("group_name", groupData.getName());
+      typeTextInField("group_header", groupData.getHeader());
+      typeTextInField("group_footer", groupData.getFooter());
     }
 
-    public void initGroupCreation() {
-      driver.findElement(By.name("new")).click();
+    public void initGroupCreation(){
+      clickButtonByName("new");
     }
 
-    public void deleteSelectedGroups() {
-      driver.findElement(By.name("delete")).click();
+    public void deleteSelectedGroups(){
+      clickButtonByName("delete");
     }
 
-    public void selectGroup() {
+    public void selectGroup(){
       driver.findElement(By.name("selected[]")).click();
     }
 }

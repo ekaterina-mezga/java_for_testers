@@ -15,7 +15,7 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private ContactHelper contactHelper;
 
-    public void init() {
+    public void init(){
         System.setProperty("webdriver.chrome.driver", "d:/Work/learning/tools/chromedriver246.exe ");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -27,7 +27,7 @@ public class ApplicationManager {
         sessionHelper.login("admin", "secret");
     }
 
-    public void stop() {
+    public void stop(){
         sessionHelper.logout();
         driver.quit();
     }
@@ -50,11 +50,11 @@ public class ApplicationManager {
       }
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper getGroupHelper(){
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper getNavigationHelper(){
         return navigationHelper;
     }
 
