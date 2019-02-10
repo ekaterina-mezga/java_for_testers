@@ -49,4 +49,13 @@ public class GroupHelper extends BaseHelper {
   public void submitGroupModification() {
     clickButtonByName("update");
   }
+
+  public void selectAllGroups() {
+    List<WebElement> list = driver.findElements(By.name("selected[]"));
+
+    for(WebElement element : list){
+      if(!element.isSelected())
+        element.click();
+    }
+  }
 }

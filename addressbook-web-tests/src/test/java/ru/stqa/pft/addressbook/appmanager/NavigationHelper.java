@@ -14,4 +14,8 @@ public class NavigationHelper extends BaseHelper {
   public void goToGroupsPage() {
     clickLinkText("groups");
   }
+
+  public void goToHomePage(){
+    clickLinkText("home");
+  }
 }

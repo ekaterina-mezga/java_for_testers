@@ -28,4 +28,8 @@ public class BaseHelper {
   public void clickLinkText(String linkText) {
     driver.findElement(By.linkText(linkText)).click();
   }
+
+  public void clickIcon(String cssSelector){
+    driver.findElement(By.cssSelector(cssSelector)).click();
+  }
 }

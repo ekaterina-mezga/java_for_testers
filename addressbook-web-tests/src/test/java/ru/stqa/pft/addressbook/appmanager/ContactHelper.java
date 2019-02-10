@@ -1,7 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.List;
 
 public class ContactHelper extends BaseHelper {
 
@@ -30,5 +34,29 @@ public class ContactHelper extends BaseHelper {
 
   public void initContactCreation() {
     clickLinkText("add new");
+  }
+
+  public void initContactModification(){
+    clickIcon("img[alt=\"Edit\"]");
+  }
+
+  public void submitContactModification() {
+    clickButtonByName("update");
+  }
+
+  public void selectContact() {
+    driver.findElement(By.name("selected[]")).click();
+  }
+
+  public void deleteSelectedContacts(){
+    clickButtonByXpath("//input[@value='Delete']");
+  }
+
+  public void confirmAlert(){
+    driver.switchTo().alert().accept();
+  }
+
+  public void selectAllContacts() {
+    driver.findElement(By.cssSelector("#MassCB")).click();
   }
 }
