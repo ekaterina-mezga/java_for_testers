@@ -32,6 +32,18 @@ public class ApplicationManager {
     driver.quit();
   }
 
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
+  }
+
   private boolean isElementPresent(By by) {
     try {
       driver.findElement(by);
@@ -48,17 +60,5 @@ public class ApplicationManager {
     } catch (NoAlertPresentException e) {
       return false;
     }
-  }
-
-  public GroupHelper getGroupHelper() {
-    return groupHelper;
-  }
-
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelper;
-  }
-
-  public ContactHelper getContactHelper() {
-    return contactHelper;
   }
 }
