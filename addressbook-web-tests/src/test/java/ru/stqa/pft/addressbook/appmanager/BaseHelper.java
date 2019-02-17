@@ -1,13 +1,13 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 public class BaseHelper {
 
-  private ChromeDriver driver;
+  private WebDriver driver;
 
-  public BaseHelper(ChromeDriver driver) {
+  public BaseHelper(WebDriver driver) {
     this.driver = driver;
   }
 

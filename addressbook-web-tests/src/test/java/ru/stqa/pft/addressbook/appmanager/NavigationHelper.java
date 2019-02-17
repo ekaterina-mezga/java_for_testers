@@ -1,12 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 public class NavigationHelper extends BaseHelper {
 
-  private ChromeDriver driver;
+  private WebDriver driver;
 
-  public NavigationHelper(ChromeDriver driver) {
+  public NavigationHelper(WebDriver driver) {
     super(driver);
     this.driver = driver;
   }

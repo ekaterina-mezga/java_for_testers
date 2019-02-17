@@ -2,7 +2,7 @@ package ru.stqa.pft.sandbox;
 
 public class Task2 {
 
-    public static void main(String[] args){
+    public static void Task2(){
 
         Point pointA = new Point(2, 4);
         Point pointB = new Point(5, 8);
