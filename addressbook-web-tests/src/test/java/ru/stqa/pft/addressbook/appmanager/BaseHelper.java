@@ -13,8 +13,13 @@ public class BaseHelper {
 
   public void typeTextInField(String elementName, String text) {
     driver.findElement(By.name(elementName)).click();
-    driver.findElement(By.name(elementName)).clear();
-    driver.findElement(By.name(elementName)).sendKeys(text);
+    if (text != null){
+      String existingText = driver.findElement(By.name(elementName)).getAttribute("value");
+      if (!text.equals(existingText)){
+        driver.findElement(By.name(elementName)).clear();
+        driver.findElement(By.name(elementName)).sendKeys(text);
+      }
+    }
   }
 
   public void clickButtonByName(String buttonName) {
