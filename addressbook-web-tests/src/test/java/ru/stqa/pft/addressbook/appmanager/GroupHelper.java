@@ -69,7 +69,6 @@ public class GroupHelper extends BaseHelper {
   }
 
   public boolean isGroupExist() {
-    boolean a = isElementPresent(By.name("selected[]"));
-    return a;
+    return isElementPresent(By.name("selected[]"));
   }
 }

@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -31,7 +32,11 @@ public class ContactHelper extends BaseHelper {
     typeTextInField("email", contactData.getEmail());
 
     if (isCreation){
-      new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      try {
+        new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      } catch (NoSuchElementException ex){
+        return;
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -39,6 +44,13 @@ public class ContactHelper extends BaseHelper {
 
   public void initContactCreation() {
     clickLinkText("add new");
+  }
+
+  public void createContact(ContactData contact){
+    initContactCreation();
+    fillContactForm(contact, true);
+    submitContactCreation();
+    returnToHomePage();
   }
 
   public void initContactModification(){
@@ -63,5 +75,9 @@ public class ContactHelper extends BaseHelper {
 
   public void selectAllContacts() {
     driver.findElement(By.cssSelector("#MassCB")).click();
+  }
+
+  public boolean isContactExist(){
+    return isElementPresent(By.name("selected[]"));
   }
 }
