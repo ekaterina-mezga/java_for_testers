@@ -48,6 +48,10 @@ public class GroupHelper extends BaseHelper {
     clickButtonByName("update");
   }
 
+  public void returnToGroupsPage() {
+    clickLinkText("group page");
+  }
+
   public void selectAllGroups() {
     List<WebElement> list = driver.findElements(By.name("selected[]"));
 
@@ -55,5 +59,17 @@ public class GroupHelper extends BaseHelper {
       if(!element.isSelected())
         element.click();
     }
+  }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupsPage();
+  }
+
+  public boolean isGroupExist() {
+    boolean a = isElementPresent(By.name("selected[]"));
+    return a;
   }
 }
