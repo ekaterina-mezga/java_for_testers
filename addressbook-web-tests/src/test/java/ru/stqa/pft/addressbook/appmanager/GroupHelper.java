@@ -16,9 +16,7 @@ public class GroupHelper extends BaseHelper {
     this.driver = driver;
   }
 
-  public void returnToGroupsPage() {
-    clickLinkText("group page");
-  }
+
 
   public void submitGroupCreation() {
     clickButtonByName("submit");

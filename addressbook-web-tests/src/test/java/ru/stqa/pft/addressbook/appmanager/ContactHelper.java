@@ -15,9 +15,7 @@ public class ContactHelper extends BaseHelper {
     this.driver = driver;
   }
 
-  public void returnToHomePage() {
-    clickLinkText("home page");
-  }
+
 
   public void submitContactCreation() {
     clickButtonByName("submit");
