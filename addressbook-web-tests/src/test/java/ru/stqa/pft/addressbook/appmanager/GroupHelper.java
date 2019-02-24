@@ -36,8 +36,8 @@ public class GroupHelper extends BaseHelper {
     clickButtonByName("delete");
   }
 
-  public void selectGroup() {
-    driver.findElement(By.name("selected[]")).click();
+  public void selectGroup(int index) {
+    driver.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initGroupModification() {
