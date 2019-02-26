@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class BaseHelper {
 
@@ -35,8 +36,8 @@ public class BaseHelper {
     driver.findElement(By.linkText(linkText)).click();
   }
 
-  public void clickIcon(String cssSelector){
-    driver.findElement(By.cssSelector(cssSelector)).click();
+  public void clickIcon(WebElement icon){
+    icon.click();
   }
 
   public boolean isElementPresent(By locator) {
