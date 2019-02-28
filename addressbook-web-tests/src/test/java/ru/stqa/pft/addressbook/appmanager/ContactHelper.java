@@ -90,10 +90,10 @@ public class ContactHelper extends BaseHelper {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){
-      String firstName = e.findElements(By.cssSelector("tr[name=\"entry\"] > td")).get(1).getText();
-      String lastName = e.findElements(By.cssSelector("tr[name=\"entry\"] > td")).get(2).getText();
-      int id = Integer.parseInt(e.findElement(By.cssSelector("tr[name=\"entry\"] input[type=\"checkbox\"]")).getAttribute("id"));
-      ContactData contact = new ContactData(id, lastName, firstName, null, null, null, null);
+      String firstName = e.findElements(By.cssSelector("td")).get(1).getText();
+      String lastName = e.findElements(By.cssSelector("td")).get(2).getText();
+      int id = Integer.parseInt(e.findElement(By.cssSelector("input[type=\"checkbox\"]")).getAttribute("id"));
+      ContactData contact = new ContactData(id, lastName, firstName);
       contacts.add(contact);
     }
     return contacts;

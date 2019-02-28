@@ -5,9 +5,9 @@ import java.util.Objects;
 public class ContactData {
   private final String firstName;
   private final String lastName;
-  private final String address;
-  private final String homePhone;
-  private final String email;
+  private String address;
+  private String homePhone;
+  private String email;
   private int id;
   private String group;
 
@@ -29,6 +29,12 @@ public class ContactData {
     this.homePhone = homePhone;
     this.email = email;
     this.group = group;
+  }
+
+  public ContactData(int id, String firstName, String lastName) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public String getFirstName() {
