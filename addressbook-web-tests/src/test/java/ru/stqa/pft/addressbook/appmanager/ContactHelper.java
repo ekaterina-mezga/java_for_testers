@@ -113,11 +113,10 @@ public class ContactHelper extends BaseHelper {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){
-      String firstName = e.findElements(By.cssSelector("td")).get(1).getText();
-      String lastName = e.findElements(By.cssSelector("td")).get(2).getText();
+      String firstName = e.findElements(By.cssSelector("td")).get(2).getText();
+      String lastName = e.findElements(By.cssSelector("td")).get(1).getText();
       int id = Integer.parseInt(e.findElement(By.cssSelector("input[type=\"checkbox\"]")).getAttribute("id"));
-      ContactData contact = new ContactData(id, lastName, firstName);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
     }
     return contacts;
   }
