@@ -60,18 +60,30 @@ public class GroupHelper extends BaseHelper {
     }
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupsPage();
   }
 
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    returnToGroupsPage();
+  }
+
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    returnToGroupsPage();
+  }
+
+  public void deleteAll() {
+    selectAllGroups();
+    deleteSelectedGroups();
     returnToGroupsPage();
   }
 
@@ -83,7 +95,7 @@ public class GroupHelper extends BaseHelper {
     return driver.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList(){
+  public List<GroupData> list(){
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
     for (WebElement e: elements){

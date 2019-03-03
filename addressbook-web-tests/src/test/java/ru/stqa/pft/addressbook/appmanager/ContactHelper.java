@@ -14,10 +14,12 @@ import java.util.List;
 public class ContactHelper extends BaseHelper {
 
   private WebDriver driver;
+  private NavigationHelper goTo;
 
   public ContactHelper(WebDriver driver) {
     super(driver);
     this.driver = driver;
+    goTo = new NavigationHelper(driver);
   }
 
   public void returnToHomePage() {
@@ -50,11 +52,32 @@ public class ContactHelper extends BaseHelper {
     clickLinkText("add new");
   }
 
-  public void createContact(ContactData contact){
+  public void create(ContactData contact){
     initContactCreation();
     fillContactForm(contact, true);
     submitContactCreation();
     returnToHomePage();
+  }
+
+  public void modify(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
+    confirmAlert();
+    goTo.homePage();
+  }
+
+  public void deleteAll() {
+    selectAllContacts();
+    deleteSelectedContacts();
+    confirmAlert();
+    goTo.homePage();
   }
 
   public void initContactModification(int index){
@@ -86,7 +109,7 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList(){
+  public List<ContactData> list(){
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){

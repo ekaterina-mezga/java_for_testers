@@ -12,7 +12,7 @@ public class NavigationHelper extends BaseHelper {
     this.driver = driver;
   }
 
-  public void goToGroupsPage() {
+  public void groupsPage() {
     if (isElementPresent(By.tagName("h1"))
             && driver.findElement(By.tagName("h1")).getText().equals("groups")
             && isElementPresent(By.name("new"))){
@@ -21,7 +21,7 @@ public class NavigationHelper extends BaseHelper {
     clickLinkText("groups");
   }
 
-  public void goToHomePage(){
+  public void homePage(){
     if (isElementPresent(By.id("maintable"))){
       return;
     }
