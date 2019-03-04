@@ -36,7 +36,10 @@ public class ContactHelper extends BaseHelper {
     typeTextInField("lastname", contactData.getLastName());
     typeTextInField("address", contactData.getAddress());
     typeTextInField("home", contactData.getHomePhone());
+    typeTextInField("mobile", contactData.getMobilePhone());
+    typeTextInField("work", contactData.getWorkPhone());
     typeTextInField("email", contactData.getEmail());
+
 
     if (isCreation){
       try {
@@ -86,7 +89,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void initContactModification(int id){
-    clickIcon(driver.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")));
+    clickIcon(driver.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))));
   }
 
   public void submitContactModification() {
@@ -122,13 +125,28 @@ public class ContactHelper extends BaseHelper {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
-    List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
+    List<WebElement> elements = driver.findElements(By.name("entry"));
     for (WebElement e: elements){
-      String firstName = e.findElements(By.cssSelector("td")).get(2).getText();
-      String lastName = e.findElements(By.cssSelector("td")).get(1).getText();
+      List<WebElement> cells = e.findElements(By.cssSelector("td"));
+      String firstName = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      String[] phones = cells.get(5).getText().split("\n");
       int id = Integer.parseInt(e.findElement(By.cssSelector("input[type=\"checkbox\"]")).getAttribute("id"));
-      contactCache.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
+              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModification(contact.getId());
+    String firstName = driver.findElement(By.name("firstname")).getAttribute("value");
+    String lastName = driver.findElement(By.name("lastname")).getAttribute("value");
+    String home = driver.findElement(By.name("home")).getAttribute("value");
+    String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
+    String work = driver.findElement(By.name("work")).getAttribute("value");
+    driver.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
   }
 }
