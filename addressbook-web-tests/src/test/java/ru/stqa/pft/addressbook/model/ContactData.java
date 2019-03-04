@@ -12,6 +12,7 @@ public class ContactData {
   private String group;
   private String mobilePhone;
   private String workPhone;
+  private String allPhones;
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
@@ -40,6 +41,15 @@ public class ContactData {
 
   public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
+    return this;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
     return this;
   }
 
