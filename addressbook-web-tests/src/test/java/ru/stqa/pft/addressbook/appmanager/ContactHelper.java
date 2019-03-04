@@ -7,10 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -82,8 +81,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void initContactModification(int id){
-    WebElement rowToEdit = driver.findElement(By.xpath("//input[@id='" + id + "']/../.."));
-    clickIcon(rowToEdit.findElement(By.cssSelector("img[alt=\"Edit\"]")));
+    clickIcon(driver.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")));
   }
 
   public void submitContactModification() {
@@ -110,8 +108,8 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public Set<ContactData> all(){
-    Set<ContactData> contacts = new HashSet<ContactData>();
+  public Contacts all(){
+    Contacts contacts = new Contacts();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){
       String firstName = e.findElements(By.cssSelector("td")).get(2).getText();
