@@ -15,7 +15,7 @@ public class ContactPhoneTests extends TestBase {
     if (app.contact().all().size() == 0){
       app.contact().create(new ContactData()
               .withFirstName("Sherlock").withLastName("Holmes").withAddress("London, Backer str., 221b")
-              .withHomePhone("2222222").withMobilePhone("3333333").withWorkPhone("4444444")
+              .withHomePhone("222 22 22").withMobilePhone("333 33 33").withWorkPhone("444 44 44")
               .withEmail("sherlock@test.test").withGroup("group1"));
     }
   }
@@ -25,8 +25,12 @@ public class ContactPhoneTests extends TestBase {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getHomePhone(), equalTo(contactInfoFromEditForm.getHomePhone()));
-    assertThat(contact.getMobilePhone(), equalTo(contactInfoFromEditForm.getMobilePhone()));
-    assertThat(contact.getWorkPhone(), equalTo(contactInfoFromEditForm.getWorkPhone()));
+    assertThat(contact.getHomePhone(), equalTo(cleaned(contactInfoFromEditForm.getHomePhone())));
+    assertThat(contact.getMobilePhone(), equalTo(cleaned(contactInfoFromEditForm.getMobilePhone())));
+    assertThat(contact.getWorkPhone(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhone())));
+  }
+
+  public String cleaned(String phone){
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
 }
