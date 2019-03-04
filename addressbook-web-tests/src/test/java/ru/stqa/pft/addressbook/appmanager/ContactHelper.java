@@ -8,8 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -59,15 +60,15 @@ public class ContactHelper extends BaseHelper {
     returnToHomePage();
   }
 
-  public void modify(int index, ContactData contact) {
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    initContactModification(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContacts();
     confirmAlert();
     goTo.homePage();
@@ -80,8 +81,8 @@ public class ContactHelper extends BaseHelper {
     goTo.homePage();
   }
 
-  public void initContactModification(int index){
-    WebElement rowToEdit = driver.findElements(By.cssSelector("[name=\"entry\"]")).get(index);
+  public void initContactModification(int id){
+    WebElement rowToEdit = driver.findElement(By.xpath("//input[@id='" + id + "']/../.."));
     clickIcon(rowToEdit.findElement(By.cssSelector("img[alt=\"Edit\"]")));
   }
 
@@ -89,8 +90,8 @@ public class ContactHelper extends BaseHelper {
     clickButtonByName("update");
   }
 
-  public void selectContact(int index) {
-    driver.findElements(By.name("selected[]")).get(index).click();
+  private void selectContactById(int id) {
+    driver.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void deleteSelectedContacts(){
@@ -109,8 +110,8 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> list(){
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all(){
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){
       String firstName = e.findElements(By.cssSelector("td")).get(2).getText();
