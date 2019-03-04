@@ -15,6 +15,7 @@ public class ContactHelper extends BaseHelper {
 
   private WebDriver driver;
   private NavigationHelper goTo;
+  private Contacts contactCache = null;
 
   public ContactHelper(WebDriver driver) {
     super(driver);
@@ -56,6 +57,7 @@ public class ContactHelper extends BaseHelper {
     initContactCreation();
     fillContactForm(contact, true);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -63,6 +65,7 @@ public class ContactHelper extends BaseHelper {
     initContactModification(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -70,6 +73,7 @@ public class ContactHelper extends BaseHelper {
     selectContactById(contact.getId());
     deleteSelectedContacts();
     confirmAlert();
+    contactCache = null;
     goTo.homePage();
   }
 
@@ -77,6 +81,7 @@ public class ContactHelper extends BaseHelper {
     selectAllContacts();
     deleteSelectedContacts();
     confirmAlert();
+    contactCache = null;
     goTo.homePage();
   }
 
@@ -109,14 +114,17 @@ public class ContactHelper extends BaseHelper {
   }
 
   public Contacts all(){
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = driver.findElements(By.cssSelector("[name=\"entry\"]"));
     for (WebElement e: elements){
       String firstName = e.findElements(By.cssSelector("td")).get(2).getText();
       String lastName = e.findElements(By.cssSelector("td")).get(1).getText();
       int id = Integer.parseInt(e.findElement(By.cssSelector("input[type=\"checkbox\"]")).getAttribute("id"));
-      contacts.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
+      contactCache.add(new ContactData().withId(id).withLastName(lastName).withFirstName(firstName));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 }

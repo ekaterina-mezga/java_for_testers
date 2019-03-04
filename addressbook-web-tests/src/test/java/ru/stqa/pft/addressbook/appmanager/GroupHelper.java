@@ -11,6 +11,7 @@ import java.util.List;
 public class GroupHelper extends BaseHelper {
 
   private WebDriver driver;
+  private Groups groupCache = null;
 
   public GroupHelper(WebDriver driver) {
     super(driver);
@@ -64,6 +65,7 @@ public class GroupHelper extends BaseHelper {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    groupCache = null;
     returnToGroupsPage();
   }
 
@@ -72,18 +74,21 @@ public class GroupHelper extends BaseHelper {
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     returnToGroupsPage();
   }
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
+    groupCache = null;
     returnToGroupsPage();
   }
 
   public void deleteAll() {
     selectAllGroups();
     deleteSelectedGroups();
+    groupCache = null;
     returnToGroupsPage();
   }
 
@@ -96,13 +101,16 @@ public class GroupHelper extends BaseHelper {
   }
 
   public Groups all(){
-    Groups groups = new Groups();
+    if (groupCache != null){
+      return new Groups(groupCache);
+    }
+    groupCache = new Groups();
     List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
     for (WebElement e: elements){
       String name = e.getText();
       int id = Integer.parseInt(e.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups(groupCache);
   }
 }
