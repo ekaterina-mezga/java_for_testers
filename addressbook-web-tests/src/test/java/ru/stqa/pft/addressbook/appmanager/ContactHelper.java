@@ -39,6 +39,8 @@ public class ContactHelper extends BaseHelper {
     typeTextInField("mobile", contactData.getMobilePhone());
     typeTextInField("work", contactData.getWorkPhone());
     typeTextInField("email", contactData.getEmail());
+    typeTextInField("email2", contactData.getEmail2());
+    typeTextInField("email3", contactData.getEmail3());
 
 
     if (isCreation){
@@ -131,9 +133,11 @@ public class ContactHelper extends BaseHelper {
       String firstName = cells.get(2).getText();
       String lastName = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
+      String address = cells.get(3).getText();
+      String allEmails = cells.get(4).getText();
       int id = Integer.parseInt(e.findElement(By.cssSelector("input[type=\"checkbox\"]")).getAttribute("id"));
       contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-              .withAllPhones(allPhones));
+              .withAllPhones(allPhones).withAddress(address).withAllEmails(allEmails));
     }
     return new Contacts(contactCache);
   }
@@ -145,8 +149,13 @@ public class ContactHelper extends BaseHelper {
     String home = driver.findElement(By.name("home")).getAttribute("value");
     String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
     String work = driver.findElement(By.name("work")).getAttribute("value");
+    String address = driver.findElement(By.name("address")).getAttribute("value");
+    String email = driver.findElement(By.name("email")).getAttribute("value");
+    String email2 = driver.findElement(By.name("email2")).getAttribute("value");
+    String email3 = driver.findElement(By.name("email3")).getAttribute("value");
     driver.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address)
+            .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 }
