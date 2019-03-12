@@ -5,6 +5,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
+
 public class BaseHelper {
 
   private WebDriver driver;
@@ -13,7 +15,7 @@ public class BaseHelper {
     this.driver = driver;
   }
 
-  public void typeTextInField(String elementName, String text) {
+  public void type(String elementName, String text) {
     driver.findElement(By.name(elementName)).click();
     if (text != null){
       String existingText = driver.findElement(By.name(elementName)).getAttribute("value");
@@ -21,6 +23,12 @@ public class BaseHelper {
         driver.findElement(By.name(elementName)).clear();
         driver.findElement(By.name(elementName)).sendKeys(text);
       }
+    }
+  }
+
+  public void attach(String elementName, File file) {
+    if (file != null){
+        driver.findElement(By.name(elementName)).sendKeys(file.getAbsolutePath());
     }
   }
 

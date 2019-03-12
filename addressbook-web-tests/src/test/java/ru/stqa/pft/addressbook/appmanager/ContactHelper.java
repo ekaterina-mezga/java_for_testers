@@ -32,15 +32,16 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void fillContactForm(ContactData contactData, boolean isCreation) {
-    typeTextInField("firstname", contactData.getFirstName());
-    typeTextInField("lastname", contactData.getLastName());
-    typeTextInField("address", contactData.getAddress());
-    typeTextInField("home", contactData.getHomePhone());
-    typeTextInField("mobile", contactData.getMobilePhone());
-    typeTextInField("work", contactData.getWorkPhone());
-    typeTextInField("email", contactData.getEmail());
-    typeTextInField("email2", contactData.getEmail2());
-    typeTextInField("email3", contactData.getEmail3());
+    type("firstname", contactData.getFirstName());
+    type("lastname", contactData.getLastName());
+    type("address", contactData.getAddress());
+    type("home", contactData.getHomePhone());
+    type("mobile", contactData.getMobilePhone());
+    type("work", contactData.getWorkPhone());
+    type("email", contactData.getEmail());
+    type("email2", contactData.getEmail2());
+    type("email3", contactData.getEmail3());
+    attach("photo", contactData.getPhoto());
 
 
     if (isCreation){
