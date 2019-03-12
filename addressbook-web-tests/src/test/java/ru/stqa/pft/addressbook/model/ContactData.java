@@ -33,8 +33,10 @@ public class ContactData {
   private String mobilePhone;
   @Expose
   private String workPhone;
-  @Expose
+
   private String allPhones;
+
+  private File photo;
 
   public File getPhoto() {
     return photo;
@@ -44,9 +46,6 @@ public class ContactData {
     this.photo = photo;
     return this;
   }
-
-  private File photo;
-
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
