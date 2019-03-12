@@ -82,13 +82,12 @@ public class ContactDataGenerator {
 
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    File photo = new File("src/test/resources/icon.png ");
     for (int i=0; i< count; i++){
       contacts.add(new ContactData().withFirstName(String.format("Sherlock %s", i)).withLastName(String.format("Holmes %s", i))
               .withAddress(String.format("London Backer str. 221b-%s", i)).withHomePhone(String.format("222 22 2%s", i))
               .withMobilePhone(String.format("333 33 3%s", i)).withWorkPhone(String.format("444 44 4%s", i))
               .withEmail(String.format("sherlock%s@test.test", i)).withEmail2(String.format("sherlock2%s@test.test", i))
-              .withEmail3(String.format("sherlock3%s@test.test", i)).withGroup(String.format("group %s", i)).withPhoto(photo));
+              .withEmail3(String.format("sherlock3%s@test.test", i)).withGroup(String.format("group %s", i)));
     }
     return contacts;
   }

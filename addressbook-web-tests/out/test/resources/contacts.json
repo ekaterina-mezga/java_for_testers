@@ -10,53 +10,5 @@
     "group": "group 0",
     "mobilePhone": "333 33 30",
     "workPhone": "444 44 40"
-  },
-  {
-    "firstName": "Sherlock 1",
-    "lastName": "Holmes 1",
-    "address": "London Backer str. 221b-1",
-    "homePhone": "222 22 21",
-    "email": "sherlock1@test.test",
-    "email2": "sherlock21@test.test",
-    "email3": "sherlock31@test.test",
-    "group": "group 1",
-    "mobilePhone": "333 33 31",
-    "workPhone": "444 44 41"
-  },
-  {
-    "firstName": "Sherlock 2",
-    "lastName": "Holmes 2",
-    "address": "London Backer str. 221b-2",
-    "homePhone": "222 22 22",
-    "email": "sherlock2@test.test",
-    "email2": "sherlock22@test.test",
-    "email3": "sherlock32@test.test",
-    "group": "group 2",
-    "mobilePhone": "333 33 32",
-    "workPhone": "444 44 42"
-  },
-  {
-    "firstName": "Sherlock 3",
-    "lastName": "Holmes 3",
-    "address": "London Backer str. 221b-3",
-    "homePhone": "222 22 23",
-    "email": "sherlock3@test.test",
-    "email2": "sherlock23@test.test",
-    "email3": "sherlock33@test.test",
-    "group": "group 3",
-    "mobilePhone": "333 33 33",
-    "workPhone": "444 44 43"
-  },
-  {
-    "firstName": "Sherlock 4",
-    "lastName": "Holmes 4",
-    "address": "London Backer str. 221b-4",
-    "homePhone": "222 22 24",
-    "email": "sherlock4@test.test",
-    "email2": "sherlock24@test.test",
-    "email3": "sherlock34@test.test",
-    "group": "group 4",
-    "mobilePhone": "333 33 34",
-    "workPhone": "444 44 44"
   }
 ]
