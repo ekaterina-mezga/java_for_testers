@@ -1,11 +1,16 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Objects;
 
+@XStreamAlias("group")
 public class GroupData {
   private String name;
   private String header;
   private String footer;
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
 
   public int getId() { return id; }
