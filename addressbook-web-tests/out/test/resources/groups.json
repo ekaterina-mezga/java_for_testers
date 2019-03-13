@@ -8,20 +8,5 @@
     "name": "group 1",
     "header": "header 1",
     "footer": "footer 1"
-  },
-  {
-    "name": "group 2",
-    "header": "header 2",
-    "footer": "footer 2"
-  },
-  {
-    "name": "group 3",
-    "header": "header 3",
-    "footer": "footer 3"
-  },
-  {
-    "name": "group 4",
-    "header": "header 4",
-    "footer": "footer 4"
   }
 ]
