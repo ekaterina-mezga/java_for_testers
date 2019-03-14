@@ -10,7 +10,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -32,11 +31,10 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
-    System.setProperty("webdriver.chrome.driver", "d:/Work/learning/tools/chromedriver246.exe");
-    System.setProperty("webdriver.gecko.driver", "d:/Work/learning/tools/geckodriver.exe");
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
+    System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
+    System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
     if (browser.equals(BrowserType.CHROME)){
       driver = new ChromeDriver();
     } else if (browser.equals(BrowserType.FIREFOX)){
