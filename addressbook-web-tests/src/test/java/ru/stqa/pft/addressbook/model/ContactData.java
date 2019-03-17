@@ -28,6 +28,10 @@ public class ContactData {
   private String lastName;
 
   @Expose
+  @Column(name = "nickname")
+  private String nickname;
+
+  @Expose
   @Column(name = "address")
   @Type(type = "text")
   private String address;
@@ -99,6 +103,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
   public ContactData withAddress(String address) {
     this.address = address;
     return this;
@@ -119,10 +128,6 @@ public class ContactData {
     return this;
   }
 
-  public String getAllPhones() {
-    return allPhones;
-  }
-
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
@@ -138,21 +143,9 @@ public class ContactData {
     return this;
   }
 
-  public String getEmail2() {
-    return email2;
-  }
-
   public ContactData withEmail3(String email3) {
     this.email3 = email3;
     return this;
-  }
-
-  public String getEmail3() {
-    return email3;
-  }
-
-  public String getAllEmails() {
-    return allEmails;
   }
 
   public ContactData withAllEmails(String allEmails) {
@@ -178,6 +171,10 @@ public class ContactData {
     return lastName;
   }
 
+  public String getNickname() {
+    return nickname;
+  }
+
   public String getAddress() {
     return address;
   }
@@ -194,8 +191,24 @@ public class ContactData {
     return workPhone;
   }
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
   public String getEmail() {
     return email;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public String getGroup() {
@@ -213,12 +226,13 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id &&
             Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(nickname, that.nickname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, id);
+    return Objects.hash(id, firstName, lastName, nickname);
   }
 
   @Override

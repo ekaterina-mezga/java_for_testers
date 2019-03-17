@@ -2,26 +2,27 @@
   {
     "firstName": "Sherlock 0",
     "lastName": "Holmes 0",
+    "nickname": "SH 0",
     "address": "London Backer str. 221b-0",
     "homePhone": "222 22 20",
+    "mobilePhone": "333 33 30",
+    "workPhone": "444 44 40",
     "email": "sherlock0@test.test",
     "email2": "sherlock20@test.test",
     "email3": "sherlock30@test.test",
-    "group": "group 0",
-    "mobilePhone": "333 33 30",
-    "workPhone": "444 44 40"
+    "group": "group 0"
   },
   {
     "firstName": "Sherlock 1",
     "lastName": "Holmes 1",
+    "nickname": "SH 1",
     "address": "London Backer str. 221b-1",
     "homePhone": "222 22 21",
+    "mobilePhone": "333 33 31",
+    "workPhone": "444 44 41",
     "email": "sherlock1@test.test",
     "email2": "sherlock21@test.test",
     "email3": "sherlock31@test.test",
-    "group": "group 1",
-    "mobilePhone": "333 33 31",
-    "workPhone": "444 44 41"
+    "group": "group 1"
   }
-
 ]

@@ -2,66 +2,27 @@
   <contact>
     <firstName>Sherlock 0</firstName>
     <lastName>Holmes 0</lastName>
+    <nickname>SH 0</nickname>
     <address>London Backer str. 221b-0</address>
     <homePhone>222 22 20</homePhone>
+    <mobilePhone>333 33 30</mobilePhone>
+    <workPhone>444 44 40</workPhone>
     <email>sherlock0@test.test</email>
     <email2>sherlock20@test.test</email2>
     <email3>sherlock30@test.test</email3>
     <group>group 0</group>
-    <mobilePhone>333 33 30</mobilePhone>
-    <workPhone>444 44 40</workPhone>
-    <photo>src\test\resources\icon.png </photo>
   </contact>
   <contact>
     <firstName>Sherlock 1</firstName>
     <lastName>Holmes 1</lastName>
+    <nickname>SH 1</nickname>
     <address>London Backer str. 221b-1</address>
     <homePhone>222 22 21</homePhone>
+    <mobilePhone>333 33 31</mobilePhone>
+    <workPhone>444 44 41</workPhone>
     <email>sherlock1@test.test</email>
     <email2>sherlock21@test.test</email2>
     <email3>sherlock31@test.test</email3>
     <group>group 1</group>
-    <mobilePhone>333 33 31</mobilePhone>
-    <workPhone>444 44 41</workPhone>
-    <photo>src\test\resources\icon.png </photo>
-  </contact>
-  <contact>
-    <firstName>Sherlock 2</firstName>
-    <lastName>Holmes 2</lastName>
-    <address>London Backer str. 221b-2</address>
-    <homePhone>222 22 22</homePhone>
-    <email>sherlock2@test.test</email>
-    <email2>sherlock22@test.test</email2>
-    <email3>sherlock32@test.test</email3>
-    <group>group 2</group>
-    <mobilePhone>333 33 32</mobilePhone>
-    <workPhone>444 44 42</workPhone>
-    <photo>src\test\resources\icon.png </photo>
-  </contact>
-  <contact>
-    <firstName>Sherlock 3</firstName>
-    <lastName>Holmes 3</lastName>
-    <address>London Backer str. 221b-3</address>
-    <homePhone>222 22 23</homePhone>
-    <email>sherlock3@test.test</email>
-    <email2>sherlock23@test.test</email2>
-    <email3>sherlock33@test.test</email3>
-    <group>group 3</group>
-    <mobilePhone>333 33 33</mobilePhone>
-    <workPhone>444 44 43</workPhone>
-    <photo>src\test\resources\icon.png </photo>
-  </contact>
-  <contact>
-    <firstName>Sherlock 4</firstName>
-    <lastName>Holmes 4</lastName>
-    <address>London Backer str. 221b-4</address>
-    <homePhone>222 22 24</homePhone>
-    <email>sherlock4@test.test</email>
-    <email2>sherlock24@test.test</email2>
-    <email3>sherlock34@test.test</email3>
-    <group>group 4</group>
-    <mobilePhone>333 33 34</mobilePhone>
-    <workPhone>444 44 44</workPhone>
-    <photo>src\test\resources\icon.png </photo>
   </contact>
 </list>

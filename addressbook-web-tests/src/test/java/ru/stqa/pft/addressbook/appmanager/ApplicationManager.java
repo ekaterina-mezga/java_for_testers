@@ -51,7 +51,6 @@ public class ApplicationManager {
     sessionHelper = new SessionHelper(driver);
     contactHelper = new ContactHelper(driver);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
-
   }
 
   public void stop() {
