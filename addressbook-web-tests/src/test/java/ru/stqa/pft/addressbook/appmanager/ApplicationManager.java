@@ -24,6 +24,7 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private ContactHelper contactHelper;
   private String browser;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -35,6 +36,7 @@ public class ApplicationManager {
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
     System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
+    dbHelper = new DbHelper();
     if (browser.equals(BrowserType.CHROME)){
       driver = new ChromeDriver();
     } else if (browser.equals(BrowserType.FIREFOX)){
@@ -49,6 +51,7 @@ public class ApplicationManager {
     sessionHelper = new SessionHelper(driver);
     contactHelper = new ContactHelper(driver);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+
   }
 
   public void stop() {
@@ -66,6 +69,10 @@ public class ApplicationManager {
 
   public ContactHelper contact() {
     return contactHelper;
+  }
+
+  public DbHelper db(){
+    return dbHelper;
   }
 
   private boolean isElementPresent(By by) {
