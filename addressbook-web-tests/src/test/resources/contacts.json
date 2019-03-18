@@ -10,7 +10,11 @@
     "email": "sherlock0@test.test",
     "email2": "sherlock20@test.test",
     "email3": "sherlock30@test.test",
-    "group": "group 0"
+    "groups": [
+      {
+        "name": "group 0"
+      }
+    ]
   },
   {
     "firstName": "Sherlock 1",
@@ -23,6 +27,10 @@
     "email": "sherlock1@test.test",
     "email2": "sherlock21@test.test",
     "email3": "sherlock31@test.test",
-    "group": "group 1"
+    "groups": [
+      {
+        "name": "group 1"
+      }
+    ]
   }
 ]

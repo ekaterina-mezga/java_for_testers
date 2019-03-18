@@ -1,2 +1,1 @@
-Sherlock 0;Holmes 0;SH 0;London Backer str. 221b-0;222 22 20;333 33 30;444 44 40;sherlock0@test.test;sherlock20@test.test;sherlock30@test.test;group 0;null
-Sherlock 1;Holmes 1;SH 1;London Backer str. 221b-1;222 22 21;333 33 31;444 44 41;sherlock1@test.test;sherlock21@test.test;sherlock31@test.test;group 1;null
+Sherlock 0;Holmes 0;SH 0;London Backer str. 221b-0;222 22 20;333 33 30;444 44 40;sherlock0@test.test;sherlock20@test.test;sherlock30@test.test;[GroupData{name='group 0', id='2147483647'}];null
