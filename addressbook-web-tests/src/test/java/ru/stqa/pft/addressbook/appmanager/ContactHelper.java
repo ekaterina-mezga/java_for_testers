@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
@@ -105,12 +106,16 @@ public class ContactHelper extends BaseHelper {
     clickButtonByName("update");
   }
 
-  private void selectContactById(int id) {
+  public void selectContactById(int id) {
     driver.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void deleteSelectedContacts(){
     clickButtonByXpath("//input[@value='Delete']");
+  }
+
+  public void addToGroup(){
+    clickButtonByName("add");
   }
 
   public void confirmAlert(){
@@ -119,6 +124,13 @@ public class ContactHelper extends BaseHelper {
 
   public void selectAllContacts() {
     driver.findElement(By.cssSelector("#MassCB")).click();
+  }
+
+  public void addToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+    addToGroup();
+    goTo.homePage();
   }
 
   public boolean isContactExist(){
