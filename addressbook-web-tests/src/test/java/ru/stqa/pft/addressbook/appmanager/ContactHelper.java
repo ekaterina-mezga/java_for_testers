@@ -98,6 +98,16 @@ public class ContactHelper extends BaseHelper {
     goTo.homePage();
   }
 
+  public void filterByGroup(GroupData group){
+    new Select(driver.findElement(By.name("group"))).selectByVisibleText(group.getName());
+  }
+
+  public void removeFromGroup(int id){
+    selectContactById(id);
+    clickButtonByName("remove");
+    goTo.homePage();
+  }
+
   public void initContactModification(int id){
     clickIcon(driver.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))));
   }
@@ -114,7 +124,7 @@ public class ContactHelper extends BaseHelper {
     clickButtonByXpath("//input[@value='Delete']");
   }
 
-  public void addToGroup(){
+  public void addToSelectedGroup(){
     clickButtonByName("add");
   }
 
@@ -129,7 +139,7 @@ public class ContactHelper extends BaseHelper {
   public void addToGroup(ContactData contact, GroupData group) {
     selectContactById(contact.getId());
     new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
-    addToGroup();
+    addToSelectedGroup();
     goTo.homePage();
   }
 
