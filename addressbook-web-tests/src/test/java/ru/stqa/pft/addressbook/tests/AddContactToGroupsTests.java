@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -32,7 +33,6 @@ public class AddContactToGroupsTests extends TestBase {
     Groups contactGroupsBefore = contact.getGroups();
     Groups availableGroups = app.db().groups();
     GroupData groupToAdd;
-
     if (contactGroupsBefore.size() > 0){
       if (contactGroupsBefore.equals(availableGroups)){
         app.goTo().groupsPage();
@@ -43,11 +43,16 @@ public class AddContactToGroupsTests extends TestBase {
           availableGroups = availableGroups.without(group);
       }
     }
-
     groupToAdd = availableGroups.iterator().next();
+    Contacts groupContactsBefore = app.db().groupById(groupToAdd.getId()).getContacts();
+
     app.goTo().homePage();
     app.contact().addToGroup(contact, groupToAdd);
-    contact = app.db().contactById(contact.getId());
-    assertThat(contact.getGroups(), equalTo(contactGroupsBefore.withAdded(groupToAdd)));
+
+    assertThat(app.db().contactById(contact.getId()).getGroups(),
+            equalTo(contactGroupsBefore.withAdded(groupToAdd)));
+
+    assertThat(app.db().groupById(groupToAdd.getId()).getContacts(),
+            equalTo(groupContactsBefore.withAdded(app.db().contactById(contact.getId()))));
   }
 }

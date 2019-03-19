@@ -49,4 +49,13 @@ public class DbHelper {
     session.close();
     return result;
   }
+
+  public GroupData groupById(int id){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    GroupData result = (GroupData) session.createQuery("from GroupData where group_id = " + id).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return result;
+  }
 }

@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -38,7 +39,6 @@ public class RemoveContactFromGroupsTests extends TestBase {
         break;
       }
     }
-    System.out.println("for is finished");
     if (!contactsInGroups){
       app.goTo().homePage();
       app.contact().addToGroup(app.db().contacts().iterator().next(), app.db().groups().iterator().next());
@@ -47,21 +47,25 @@ public class RemoveContactFromGroupsTests extends TestBase {
 
   @Test
   public void testRemoveContactFromGroups(){
-    GroupData group = null;
     int contactId = 0;
     Groups contactGroupsBefore = null;
     app.goTo().homePage();
     for (ContactData contact : app.db().contacts()){
       if (contact.getGroups().size() > 0) {
         contactGroupsBefore = contact.getGroups();
-        group = contactGroupsBefore.iterator().next();
         contactId = contact.getId();
         break;
       }
     }
+    GroupData group = contactGroupsBefore.iterator().next();
+    Contacts groupContactsBefore = app.db().groupById(group.getId()).getContacts();
+
     app.contact().filterByGroup(group);
-    System.out.println(group.getContacts());
     app.contact().removeFromGroup(contactId);
+
     assertThat(app.db().contactById(contactId).getGroups(), equalTo(contactGroupsBefore.without(group)));
+
+    assertThat(app.db().groupById(group.getId()).getContacts(),
+            equalTo(groupContactsBefore.without(app.db().contactById(contactId))));
   }
 }
