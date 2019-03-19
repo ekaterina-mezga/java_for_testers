@@ -53,6 +53,6 @@ public class AddContactToGroupsTests extends TestBase {
             equalTo(contactGroupsBefore.withAdded(groupToAdd)));
 
     assertThat(app.db().groupById(groupToAdd.getId()).getContacts(),
-            equalTo(groupContactsBefore.withAdded(app.db().contactById(contact.getId()))));
+            equalTo(groupContactsBefore.withAdded(contact)));
   }
 }
