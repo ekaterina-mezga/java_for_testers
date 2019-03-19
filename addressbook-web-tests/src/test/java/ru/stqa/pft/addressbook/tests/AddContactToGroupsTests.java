@@ -16,15 +16,16 @@ public class AddContactToGroupsTests extends TestBase {
     public void testAddContactToGroups(){
         ContactData contact = app.db().contacts().iterator().next();
         Groups contactGroupsBefore = contact.getGroups();
-        Groups groupsToAdd = app.db().groups();
+        Groups availableGroups = app.db().groups();
         if (contactGroupsBefore.size()>0){
             for (GroupData group : contactGroupsBefore){
-                groupsToAdd = groupsToAdd.without(group);
+                availableGroups = availableGroups.without(group);
             }
         }
+        GroupData groupToAdd = availableGroups.iterator().next();
         app.goTo().homePage();
-        GroupData groupToAdd = groupsToAdd.iterator().next();
         app.contact().addToGroup(contact, groupToAdd);
+        contact = app.db().contactById(contact.getId());
         Groups actualGroups = contact.getGroups();
         Groups expectedGroups = contactGroupsBefore.withAdded(groupToAdd);
         assertThat(actualGroups, equalTo(expectedGroups));
