@@ -7,11 +7,11 @@ import org.openqa.selenium.WebElement;
 
 import java.io.File;
 
-public class BaseHelper {
+public class HelperBase {
 
   private WebDriver driver;
 
-  public BaseHelper(WebDriver driver) {
+  public HelperBase(WebDriver driver) {
     this.driver = driver;
   }
 

@@ -13,7 +13,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
-public class ContactHelper extends BaseHelper {
+public class ContactHelper extends HelperBase {
 
   private WebDriver driver;
   private NavigationHelper goTo;

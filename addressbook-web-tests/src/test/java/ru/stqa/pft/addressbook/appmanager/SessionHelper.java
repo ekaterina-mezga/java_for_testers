@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 
-public class SessionHelper extends BaseHelper {
+public class SessionHelper extends HelperBase {
 
   private WebDriver driver;
 

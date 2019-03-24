@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavigationHelper extends BaseHelper {
+public class NavigationHelper extends HelperBase {
 
   private WebDriver driver;
 

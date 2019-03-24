@@ -8,7 +8,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
-public class GroupHelper extends BaseHelper {
+public class GroupHelper extends HelperBase {
 
   private WebDriver driver;
   private Groups groupCache = null;
