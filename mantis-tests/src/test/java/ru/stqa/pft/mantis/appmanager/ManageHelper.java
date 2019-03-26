@@ -15,4 +15,8 @@ public class ManageHelper extends HelperBase{
   public void initManageUser(int id){
     click(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=%s", id)));
   }
+
+  public void resetPassword(){
+    click(By.cssSelector("input[value='Reset Password'"));
+  }
 }

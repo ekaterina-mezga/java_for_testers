@@ -16,8 +16,7 @@ public class MailHelper {
 
   public MailHelper(ApplicationManager app){
     this.app = app;
-    wiser = new Wiser(125);
-    wiser.setHostname("localhost");
+    wiser = new Wiser();
   }
 
   public List<MailMessage> waitForMail(int count, long timeout){
