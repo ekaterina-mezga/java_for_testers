@@ -23,17 +23,17 @@ public class ChangePasswordTests extends TestBase {
   @Test
   public void testChangePassword() throws IOException {
 //    String user = "user1";
-    String password = "password";
-    String email = "user1@test.test";
-//    app.login().loginAs(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
-//    app.manage().manageUsers();
+    String password = "password123";
+//    String email = "user1@test.test";
+    app.login().loginAs(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+    app.manage().manageUsers();
     List<UserData> users = app.db().users();
     UserData user = users.iterator().next();
     if (user.getUsername().equals("administrator")){
       user = users.get(1);
     }
     app.manage().initManageUser(user.getId());
-    app.manage().resetPassword();
+    String email = user.getEmail();
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
     String changePasswordLink = findChangePasswordLink(mailMessages, email);
     app.login().changePassword(changePasswordLink, password);
