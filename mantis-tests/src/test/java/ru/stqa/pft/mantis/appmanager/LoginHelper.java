@@ -15,8 +15,8 @@ public class LoginHelper extends HelperBase {
     click(By.cssSelector("input[value='Login']"));
   }
 
-  public void changePassword(String confirmationLink, String password) {
-    driver.get(confirmationLink);
+  public void changePassword(String link, String password) {
+    driver.get(link);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
     click(By.cssSelector("input[value='Update User']"));

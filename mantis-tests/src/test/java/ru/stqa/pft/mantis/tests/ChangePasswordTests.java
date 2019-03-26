@@ -22,9 +22,8 @@ public class ChangePasswordTests extends TestBase {
 
   @Test
   public void testChangePassword() throws IOException {
-//    String user = "user1";
+
     String password = "password123";
-//    String email = "user1@test.test";
     app.login().loginAs(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.manage().manageUsers();
     List<UserData> users = app.db().users();
