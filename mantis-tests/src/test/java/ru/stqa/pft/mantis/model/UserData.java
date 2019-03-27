@@ -1,7 +1,5 @@
 package ru.stqa.pft.mantis.model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 
 @Entity
@@ -50,7 +48,6 @@ public class UserData {
   public void setEnabled(boolean enabled) {
     isEnabled = enabled;
   }
-
 
   public String getUsername() {
     return username;

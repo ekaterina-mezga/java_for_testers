@@ -9,6 +9,7 @@ import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserData;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
@@ -27,9 +28,17 @@ public class ChangePasswordTests extends TestBase {
     app.login().loginAs(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.manage().manageUsers();
     List<UserData> users = app.db().users();
-    UserData user = users.iterator().next();
-    if (user.getUsername().equals("administrator")){
-      user = users.get(1);
+    Iterator<UserData> it = users.iterator();
+    UserData user = null;
+    while (it.hasNext()){
+      UserData currUser = it.next();
+      if (! currUser.getUsername().equals("administrator")){
+        user = currUser;
+        break;
+      }
+    }
+    if (user == null){
+      throw new Error("Please create a user first!");
     }
     String email = user.getEmail();
     app.manage().initManageUser(user.getId());
