@@ -2,11 +2,10 @@ package ru.stqa.pft.mantis.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
-import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.User;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -27,11 +26,11 @@ public class ChangePasswordTests extends TestBase {
     String password = "password123";
     app.login().loginAs(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.manage().manageUsers();
-    List<UserData> users = app.db().users();
-    Iterator<UserData> it = users.iterator();
-    UserData user = null;
+    List<User> users = app.db().users();
+    Iterator<User> it = users.iterator();
+    User user = null;
     while (it.hasNext()){
-      UserData currUser = it.next();
+      User currUser = it.next();
       if (! currUser.getUsername().equals("administrator")){
         user = currUser;
         break;

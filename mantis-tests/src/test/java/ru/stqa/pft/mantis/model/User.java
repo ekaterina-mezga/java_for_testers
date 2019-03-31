@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "mantis_user_table")
-public class UserData {
+public class User {
 
   @Id
   @Column(name = "id")
@@ -67,7 +67,7 @@ public class UserData {
 
   @Override
   public String toString() {
-    return "UserData{" +
+    return "User{" +
             "id=" + id +
             ", username='" + username + '\'' +
             '}';
