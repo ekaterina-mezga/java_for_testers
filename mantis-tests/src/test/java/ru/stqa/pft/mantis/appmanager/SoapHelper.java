@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -46,5 +47,46 @@ public class SoapHelper {
             .withDescription(createdIssueData.getDescription())
             .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
                                       .withName(createdIssueData.getProject().getName()));
+  }
+
+  public Issue addNote(String noteText) throws MalformedURLException, ServiceException, RemoteException {
+    MantisConnectPortType mc = getMantisConnect();
+    IssueNoteData note = new IssueNoteData();
+    note.setText(noteText);
+    Issue issue = getSomeIssue();
+    mc.mc_issue_note_add(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issue.getId()), note);
+    IssueData updatedIssue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issue.getId()));
+    ArrayList<IssueNoteData> tmp = new ArrayList<>(Arrays.asList(updatedIssue.getNotes()));
+    Issue tmpIssue = new Issue().withId(updatedIssue.getId().intValue()).withSummary(updatedIssue.getSummary())
+            .withDescription(updatedIssue.getDescription())
+            .withProject(new Project().withId(updatedIssue.getProject().getId().intValue()).withName(updatedIssue.getProject().getName()))
+            .withNotes(tmp);
+    return tmpIssue;
+  }
+
+  public Issue getSomeIssue() throws MalformedURLException, ServiceException, RemoteException {
+    MantisConnectPortType mc = getMantisConnect();
+    BigInteger issueId = mc.mc_issue_get_biggest_id(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"),
+            BigInteger.valueOf(getProjects().iterator().next().getId()));
+    IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), issueId);
+    return new Issue().withId(issueId.intValue()).withSummary(issue.getSummary())
+            .withDescription(issue.getDescription())
+            .withProject(new Project().withId(issue.getProject().getId().intValue()).withName(issue.getProject().getName()))
+            .withNotes(new ArrayList<>(Arrays.asList(issue.getNotes())));
+  }
+
+  public IssueNoteData convertTextToNote(String text){
+    IssueNoteData note = new IssueNoteData();
+    note.setText(text);
+    return note;
+  }
+
+  public ArrayList<String> getNotesText(ArrayList<IssueNoteData> notes) {
+
+    ArrayList<String> text = new ArrayList<>();
+    for (IssueNoteData note : notes){
+      text.add(note.getText());
+    }
+    return text;
   }
 }

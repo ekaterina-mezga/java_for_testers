@@ -1,11 +1,17 @@
 package ru.stqa.pft.mantis.model;
 
+import biz.futureware.mantis.rpc.soap.client.IssueNoteData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Issue {
 
   private int id;
   private String summary;
   private String description;
   private Project project;
+  private ArrayList<IssueNoteData> notes = new ArrayList<>();
 
   public int getId() {
     return id;
@@ -40,6 +46,17 @@ public class Issue {
 
   public Issue withProject(Project project) {
     this.project = project;
+    return this;
+  }
+
+  public ArrayList<IssueNoteData> getNotes() {
+    return notes;
+  }
+
+  public Issue withNotes(ArrayList<IssueNoteData> notes) {
+    for (IssueNoteData note : notes){
+      this.notes.add(note);
+    }
     return this;
   }
 }
