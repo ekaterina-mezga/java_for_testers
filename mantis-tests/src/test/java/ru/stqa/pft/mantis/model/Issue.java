@@ -3,7 +3,6 @@ package ru.stqa.pft.mantis.model;
 import biz.futureware.mantis.rpc.soap.client.IssueNoteData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Issue {
 

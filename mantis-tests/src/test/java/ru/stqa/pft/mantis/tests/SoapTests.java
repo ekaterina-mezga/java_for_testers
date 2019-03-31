@@ -39,6 +39,7 @@ public class SoapTests extends TestBase{
   @Test
   public void testAddNote() throws RemoteException, ServiceException, MalformedURLException {
 
+    skipIfNotFixed(3);
     long now = System.currentTimeMillis();
     String noteText = String.format("some_note_text%s", now);
     Issue updatedIssue = app.soap().addNote(noteText);

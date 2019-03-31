@@ -56,12 +56,10 @@ public class SoapHelper {
     Issue issue = getSomeIssue();
     mc.mc_issue_note_add(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issue.getId()), note);
     IssueData updatedIssue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issue.getId()));
-    ArrayList<IssueNoteData> tmp = new ArrayList<>(Arrays.asList(updatedIssue.getNotes()));
-    Issue tmpIssue = new Issue().withId(updatedIssue.getId().intValue()).withSummary(updatedIssue.getSummary())
+    return new Issue().withId(updatedIssue.getId().intValue()).withSummary(updatedIssue.getSummary())
             .withDescription(updatedIssue.getDescription())
             .withProject(new Project().withId(updatedIssue.getProject().getId().intValue()).withName(updatedIssue.getProject().getName()))
-            .withNotes(tmp);
-    return tmpIssue;
+            .withNotes(new ArrayList<>(Arrays.asList(updatedIssue.getNotes())));
   }
 
   public Issue getSomeIssue() throws MalformedURLException, ServiceException, RemoteException {
@@ -82,11 +80,20 @@ public class SoapHelper {
   }
 
   public ArrayList<String> getNotesText(ArrayList<IssueNoteData> notes) {
-
     ArrayList<String> text = new ArrayList<>();
     for (IssueNoteData note : notes){
       text.add(note.getText());
     }
     return text;
+  }
+
+  public boolean isNotFixed(int id) throws MalformedURLException, ServiceException, RemoteException {
+    MantisConnectPortType mc = getMantisConnect();
+    IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(id));
+    ObjectRef[] statuses = mc.mc_enum_status(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+    String status = issue.getStatus().getName();
+    if (status.equals(statuses[statuses.length - 1].getName())){
+      return false;
+    } else { return true; }
   }
 }
