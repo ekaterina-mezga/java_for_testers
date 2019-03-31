@@ -9,7 +9,8 @@ public class ManageHelper extends HelperBase{
   }
 
   public void manageUsers(){
-    click(By.cssSelector("a[href='/mantisbt-1.2.19/manage_user_page.php'"));
+    click(By.cssSelector("a[href='/mantisbt-1.2.19/manage_overview_page.php']"));
+    click(By.cssSelector("a[href='/mantisbt-1.2.19/manage_user_page.php']"));
   }
 
   public void initManageUser(int id){
