@@ -11,8 +11,9 @@ import org.testng.annotations.Test;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class RestAssuredTests {
+public class RestAssuredTests extends TestBase{
 
   @BeforeClass
   public void init(){
@@ -21,7 +22,6 @@ public class RestAssuredTests {
 
   @Test
   public void testsCreateIssue() {
-
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
@@ -30,8 +30,24 @@ public class RestAssuredTests {
     assertEquals(newIssues, oldIssues);
   }
 
+  @Test
+  public void testsEditSubject(){
+    skipIfNotFixed(1040);
+    long now = System.currentTimeMillis();
+    Set<Issue> issues = getIssues();
+    Issue issue;
+    if (issues.iterator().hasNext()){
+      issue = issues.iterator().next();
+    } else throw new Error("Create issue!");
+    int issueId = issue.getId();
+    String oldSubject = issue.getSubject();
+    editSubject(issue, oldSubject + now);
+    String newSubject = getIssueById(issueId).getSubject();
+    assertTrue(newSubject.equals(oldSubject + now));
+  }
+
   private Set<Issue> getIssues() {
-    String json =RestAssured.get("http://bugify.stqa.ru/api/issues.json?limit=200").asString();
+    String json = RestAssured.get("http://bugify.stqa.ru/api/issues.json?limit=200").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
@@ -45,4 +61,12 @@ public class RestAssuredTests {
     JsonElement parsed = new JsonParser().parse(json);
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
+
+  private void editSubject(Issue issue, String updatedSubject){
+    RestAssured.given()
+            .parameter("issue[subject]", updatedSubject)
+            .parameter("method", "update")
+            .post(String.format("http://bugify.stqa.ru/api/issues/%s.json", issue.getId())).asString();
+  }
+
 }
