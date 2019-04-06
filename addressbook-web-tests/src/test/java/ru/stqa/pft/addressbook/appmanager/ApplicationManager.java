@@ -1,17 +1,17 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -37,13 +37,20 @@ public class ApplicationManager {
     System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
     System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
     dbHelper = new DbHelper();
-    if (browser.equals(BrowserType.CHROME)){
-      driver = new ChromeDriver();
-    } else if (browser.equals(BrowserType.FIREFOX)){
-      driver = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.IE)){
-      driver = new InternetExplorerDriver();
+    if ("".equals(properties.getProperty("selenium.server"))){
+      if (browser.equals(BrowserType.CHROME)){
+        driver = new ChromeDriver();
+      } else if (browser.equals(BrowserType.FIREFOX)){
+        driver = new FirefoxDriver();
+      } else if (browser.equals(BrowserType.IE)){
+        driver = new InternetExplorerDriver();
+      }
+    } else {
+      DesiredCapabilities capabilities = new DesiredCapabilities();
+      capabilities.setBrowserName(browser);
+      driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
+
     driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     driver.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(driver);
