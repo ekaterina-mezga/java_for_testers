@@ -33,8 +33,6 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-    System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
-    System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
   }
 
   public void stop() {
